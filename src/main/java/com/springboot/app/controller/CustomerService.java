@@ -1,6 +1,7 @@
 package com.springboot.app.controller;
 
 import com.springboot.app.model.Customer;
+import com.springboot.app.model.CustomerId;
 import com.springboot.app.model.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,5 +21,13 @@ public class CustomerService {
 
     public void addCustomer(Customer item){
         customerRepository.save(item);
+    }
+
+    public Customer customerDetails(CustomerId id){
+        return customerRepository.findById(id).get();
+    }
+
+    public void deleteCustomer(CustomerId id){
+        customerRepository.deleteById(id);
     }
 }
