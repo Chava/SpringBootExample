@@ -4,8 +4,11 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
    <head/>
    <body>
+      <div class="container mt-5">
+        <h3>The list of all customers</h3>
+      </div>
       <div class="container">
-         <div class="d-flex justify-content-center text-center">
+         <div class="d-flex justify-content-center text-center mt-5">
             <table class="table">
                <tr>
                   <th scope="col">First name</th>
@@ -21,7 +24,7 @@
                </c:forEach>
             </table>
          </div>
-         <form method="POST" action="customers">
+         <form method="POST" action="customers" class="mt-5">
             <div class="form-row">
                <div class="form-group col-md-3">
                   <label for="inputEmail4">First name</label>
