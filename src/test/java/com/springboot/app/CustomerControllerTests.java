@@ -16,25 +16,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CustomerControllerTests {
 
-	@Autowired
-	private CustomerController controller;
+    @Autowired
+    private CustomerController controller;
 
-	@LocalServerPort
-	private int port;
+    @LocalServerPort
+    private int port;
 
-	@Autowired
-	private TestRestTemplate restTemplate;
+    @Autowired
+    private TestRestTemplate restTemplate;
 
-	@Test
-	public void contextLoads() {
-		assertThat(controller).isNotNull();
-	}
+    @Test
+    public void contextLoads() {
+        assertThat(controller).isNotNull();
+    }
 
-	@Test
-	public void checkCustomersList() {
-		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/customers",
-				String.class)).contains("The list of all customers");
-	}
+    @Test
+    public void checkCustomersList() {
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/customers",
+                String.class)).contains("The list of all customers");
+    }
 
     @Test
     public void checkCustomerDetails() {
