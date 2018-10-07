@@ -55,7 +55,7 @@ public class CustomerController {
         CustomerId id = buildId(name);
         Customer customer = customerService.customerDetails(id);
         model.addAttribute("customer", customer);
-        return "customerDetails";
+        return "details";
     }
 
     @RequestMapping(value = "/customers/{name}", method = RequestMethod.DELETE)
