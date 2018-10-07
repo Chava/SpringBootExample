@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
    <head/>
    <body>
       <div class="container mt-5">
@@ -9,7 +11,7 @@
       </div>
       <div class="container">
          <div class="d-flex justify-content-center text-center mt-5">
-            <table class="table">
+            <table class="table table-striped table-bordered table-hover">
                <tr>
                   <th scope="col">First name</th>
                   <th scope="col">Last name</th>
@@ -20,7 +22,7 @@
                      <td>${customer.firstName}</td>
                      <td>${customer.lastName}</td>
                      <td>${customer.email}</td>
-                  </tr>
+                   </tr>
                </c:forEach>
             </table>
          </div>

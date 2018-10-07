@@ -22,6 +22,9 @@
                       </tr>
                 </table>
              </div>
+            <div class="d-flex justify-content-center text-center mt-5">
+              <button  class="btn btn-outline-danger">Delete this customer</button>
+            </div>
        </div>
    </body>
 </html>
