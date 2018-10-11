@@ -50,8 +50,8 @@ public class CustomerController {
         return "customers";
     }
 
-    @RequestMapping(value = "/customers/{name}", method = RequestMethod.GET)
-    public String showCustomerDetails(@PathVariable("name") String name, Model model)  {
+    @RequestMapping(value = "/customers", params = "name", method = RequestMethod.GET)
+    public String showCustomerDetails(@RequestParam("name") String name, Model model)  {
         CustomerId id = buildId(name);
         Customer customer = customerService.customerDetails(id);
         model.addAttribute("customer", customer);

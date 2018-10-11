@@ -38,7 +38,7 @@ public class CustomerControllerTests {
 
     @Test
     public void checkCustomerDetails() {
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/customers/Mark+Zuckerberg",
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/customers?name=Mark+Zuckerberg",
                 String.class)).contains("Customer details");
     }
 
