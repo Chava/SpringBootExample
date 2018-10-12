@@ -32,14 +32,27 @@ public class CustomerControllerTests {
 
     @Test
     public void checkCustomersList() {
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/customers",
+        assertThat(restTemplate.getForObject("http://localhost:" + port + "/customers",
                 String.class)).contains("The list of all customers");
     }
 
     @Test
     public void checkCustomerDetails() {
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/customers?name=Mark+Zuckerberg",
+        assertThat(restTemplate.getForObject("http://localhost:" + port + "/customers?name=Mark+Zuckerberg",
                 String.class)).contains("Customer details");
+    }
+
+    @Test
+    public void checkUnknownCustomerDetails() {
+        assertThat(restTemplate.getForObject("http://localhost:" + port + "/customers?name=Mark+Zuckerberg!",
+                String.class)).contains("No such user");
+    }
+
+    @Test
+    public void checkDeleteCustomer() {
+        restTemplate.delete("http://localhost:" + port + "/customers?name=Mark+Zuckerberg");
+        assertThat(restTemplate.getForObject("http://localhost:" + port + "/customers?name=Mark+Zuckerberg",
+                String.class)).contains("No such user");
     }
 
 }
