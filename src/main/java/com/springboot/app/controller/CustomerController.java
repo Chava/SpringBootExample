@@ -58,9 +58,9 @@ public class CustomerController {
         return "details";
     }
 
-    @RequestMapping(value = "/customers/{name}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/customers", params = "name", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteCustomer(@PathVariable("name") String name, Model model) {
+    public void deleteCustomer(@RequestParam("name") String name, Model model) {
         CustomerId id = buildId(name);
         customerService.deleteCustomer(id);
     }
