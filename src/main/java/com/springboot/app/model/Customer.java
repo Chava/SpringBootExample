@@ -2,14 +2,19 @@ package com.springboot.app.model;
 
 import org.springframework.util.MultiValueMap;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Customer {
 
-    @EmbeddedId
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "seqGen")
+    @SequenceGenerator(name = "seqGen", sequenceName = "MY_SEQUENCE", initialValue = 1000)
+    @Column(name = "id", unique = true, nullable = false)
+    private long id;
+
+    @Embedded
     private CustomerId customerId;
 
     @Column(name = "email")
@@ -23,7 +28,7 @@ public class Customer {
         this.email = email;
     }
 
-    public Customer(MultiValueMap<String,String> map) {
+    public Customer(@NotNull  MultiValueMap<String,String> map) {
         customerId = new CustomerId(map.getFirst("firstName"), map.getFirst("lastName"));
         email = map.getFirst("email");
     }
@@ -42,5 +47,9 @@ public class Customer {
 
     public String getLastName() {
         return customerId.getLastName();
+    }
+
+    public long getId() {
+        return id;
     }
 }
