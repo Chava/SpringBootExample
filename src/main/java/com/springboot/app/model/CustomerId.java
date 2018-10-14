@@ -26,4 +26,9 @@ public class CustomerId implements Serializable {
     public String getLastName() {
         return lastName;
     }
+
+    @Override
+    public String toString(){
+        return String.format("<first_name = %s, last_name = %s>", firstName, lastName);
+    }
 }

@@ -6,6 +6,7 @@ import com.springboot.app.model.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -22,13 +23,17 @@ public class CustomerService {
 
     public void addCustomer(Customer item) {
         CustomerId id = item.getCustomerId();
-        if (customerRepository.findByCustomerId(id) != null) {
+        if (!CollectionUtils.isEmpty(customerRepository.findByCustomerId(id))) {
             customerRepository.deleteByCustomerId(id);
         }
         customerRepository.save(item);
     }
 
     public Customer customerDetails(CustomerId id) {
+        List<Customer> customer =  customerRepository.findByCustomerId(id);
+        if(CollectionUtils.isEmpty(customer)){
+            throw new CustomerNotFoundException(id);
+        }
         return customerRepository.findByCustomerId(id).get(0);
     }
 
