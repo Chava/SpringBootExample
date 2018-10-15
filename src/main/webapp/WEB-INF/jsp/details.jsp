@@ -25,6 +25,7 @@
                 </table>
              </div>
             <div class="d-flex justify-content-center text-center mt-5">
+              <a href="/customers" class="btn btn-info mr-3">Back to the list</a>
               <button  class="btn btn-outline-danger">Delete this customer</button>
             </div>
        </div>
