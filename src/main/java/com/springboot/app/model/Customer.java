@@ -4,6 +4,7 @@ import org.springframework.util.MultiValueMap;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Entity
 public class Customer {
@@ -23,13 +24,13 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String firstName, String lastName, String email) {
-        this.customerId = new CustomerId(firstName, lastName);
+    public Customer(String firstName, String lastName, String email, LocalDate dob) {
+        this.customerId = new CustomerId(firstName, lastName, dob);
         this.email = email;
     }
 
     public Customer(@NotNull  MultiValueMap<String,String> map) {
-        customerId = new CustomerId(map.getFirst("firstName"), map.getFirst("lastName"));
+        customerId = new CustomerId(map.getFirst("firstName"), map.getFirst("lastName"), LocalDate.parse(map.getFirst("dob")));
         email = map.getFirst("email");
     }
 
@@ -48,6 +49,8 @@ public class Customer {
     public String getLastName() {
         return customerId.getLastName();
     }
+
+    public String getDob() {return customerId.getDob().toString();}
 
     public long getId() {
         return id;

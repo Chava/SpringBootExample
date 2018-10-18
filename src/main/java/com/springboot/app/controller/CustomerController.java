@@ -25,15 +25,15 @@ public class CustomerController {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private CustomerId buildId(String encodedName) {
-        try {
-            String[] splitedFullName = URLDecoder.decode(encodedName,
-                    StandardCharsets.UTF_8.toString()).split("\\s+");
-            return new CustomerId(splitedFullName[0], splitedFullName[1]);
-        } catch (UnsupportedEncodingException ex) {
-            throw new RuntimeException("Can't find the customer", ex);
-        }
-    }
+//    private CustomerId buildId(String encodedName) {
+//        try {
+//            String[] splitedFullName = URLDecoder.decode(encodedName,
+//                    StandardCharsets.UTF_8.toString()).split("\\s+");
+//            return new CustomerId(splitedFullName[0], splitedFullName[1]);
+//        } catch (UnsupportedEncodingException ex) {
+//            throw new RuntimeException("Can't find the customer", ex);
+//        }
+//    }
 
     @RequestMapping(value = "/customers", method = RequestMethod.GET)
     public String showAllCustomers(Model model) {
@@ -50,18 +50,18 @@ public class CustomerController {
         return "customers";
     }
 
-    @RequestMapping(value = "/customers", params = "name", method = RequestMethod.GET)
-    public String showCustomerDetails(@RequestParam("name") String name, Model model)  {
-        CustomerId id = buildId(name);
-        Customer customer = customerService.customerDetails(id);
-        model.addAttribute("customer", customer);
-        return "details";
-    }
+//    @RequestMapping(value = "/customers", params = "name", method = RequestMethod.GET)
+//    public String showCustomerDetails(@RequestParam("name") String name, Model model)  {
+//        CustomerId id = buildId(name);
+//        Customer customer = customerService.customerDetails(id);
+//        model.addAttribute("customer", customer);
+//        return "details";
+//    }
 
-    @RequestMapping(value = "/customers", params = "name", method = RequestMethod.DELETE)
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteCustomer(@RequestParam("name") String name, Model model) {
-        CustomerId id = buildId(name);
-        customerService.deleteCustomer(id);
-    }
+//    @RequestMapping(value = "/customers", params = "name", method = RequestMethod.DELETE)
+//    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+//    public void deleteCustomer(@RequestParam("name") String name, Model model) {
+//        CustomerId id = buildId(name);
+//        customerService.deleteCustomer(id);
+//    }
 }
