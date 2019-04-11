@@ -22,22 +22,18 @@ public class CustomerService {
     }
 
     public void addCustomer(Customer item) {
-        CustomerId id = item.getCustomerId();
-        if (!CollectionUtils.isEmpty(customerRepository.findByCustomerId(id))) {
-            customerRepository.deleteByCustomerId(id);
+        CustomerId customerId = item.getCustomerId();
+        if (!CollectionUtils.isEmpty(customerRepository.findByCustomerId(customerId))) {
+            customerRepository.deleteByCustomerId(customerId);
         }
         customerRepository.save(item);
     }
 
-    public Customer customerDetails(CustomerId id) {
-        List<Customer> customer =  customerRepository.findByCustomerId(id);
-        if(CollectionUtils.isEmpty(customer)){
-            throw new CustomerNotFoundException(id);
-        }
-        return customerRepository.findByCustomerId(id).get(0);
+    public Customer customerDetails(long id) {
+        return customerRepository.findById(id).get(0);
     }
 
-    public void deleteCustomer(CustomerId id) {
-        customerRepository.deleteByCustomerId(id);
+    public void deleteCustomer(long id) {
+        customerRepository.deleteById(id);
     }
 }

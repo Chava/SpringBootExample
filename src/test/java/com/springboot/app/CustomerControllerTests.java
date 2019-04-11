@@ -44,25 +44,25 @@ public class CustomerControllerTests {
                 String.class)).contains(LIST);
     }
 
-//    @Test
-//    public void checkCustomerDetails() {
-//        assertThat(restTemplate.getForObject("http://localhost:" + port + "/customers?name=Mark+Zuckerberg",
-//                String.class)).contains(DETAILS);
-//    }
-//
-//    @Test
-//    public void checkUnknownCustomerDetails() {
-//        assertThat(restTemplate.getForObject("http://localhost:" + port + "/customers?name=Mark+Zuckerberg!",
-//                String.class)).contains(NO_USER_ERROR);
-//    }
-//
-//    @Test
-//    public void checkDeleteCustomer() {
-//        restTemplate.delete("http://localhost:" + port + "/customers?name=Mark+Zuckerberg");
-//        assertThat(restTemplate.getForObject("http://localhost:" + port + "/customers?name=Mark+Zuckerberg",
-//                String.class)).contains(NO_USER_ERROR);
-//    }
-//
+    @Test
+    public void checkCustomerDetails() {
+        assertThat(restTemplate.getForObject("http://localhost:" + port + "/customers/1",
+                String.class)).contains(DETAILS);
+    }
+
+    @Test
+    public void checkUnknownCustomerDetails() {
+        assertThat(restTemplate.getForObject("http://localhost:" + port + "/customers/100000",
+                String.class)).contains(NO_USER_ERROR);
+    }
+
+    @Test
+    public void checkDeleteCustomer() {
+        restTemplate.delete("http://localhost:" + port + "/customers/1");
+        assertThat(restTemplate.getForObject("http://localhost:" + port + "/customers/1",
+                String.class)).contains(NO_USER_ERROR);
+    }
+
 //
 //    @Test
 //    public void checkAddCustomer() {

@@ -6,6 +6,8 @@ import java.util.List;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
-    List<Customer> findByCustomerId(CustomerId region);
-    void deleteByCustomerId(CustomerId region);
+    List<Customer> findById(long id);
+    List<Customer> findByCustomerId(CustomerId customerId);
+    void deleteById(long id);
+    void deleteByCustomerId(CustomerId customerId);
 }
