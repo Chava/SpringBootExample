@@ -1,6 +1,7 @@
 package com.springboot.app;
 
 import com.springboot.app.controller.CustomerController;
+import com.springboot.app.controller.CustomerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,28 +63,4 @@ public class CustomerControllerTests {
         assertThat(restTemplate.getForObject("http://localhost:" + port + "/customers/1",
                 String.class)).contains(NO_USER_ERROR);
     }
-
-//
-//    @Test
-//    public void checkAddCustomer() {
-//        MultiValueMap<String, Object> postBody = new LinkedMultiValueMap<>();
-//        postBody.put("firstName", List.of("Linus"));
-//        postBody.put("lastName", List.of("Torvalds"));
-//        postBody.put("email", List.of("linus@linux.org"));
-//        restTemplate.postForEntity("http://localhost:" + port + "/customers", postBody, String.class);
-//        assertThat(restTemplate.getForObject("http://localhost:" + port + "/customers?name=Linus+Torvalds",
-//                String.class)).contains(DETAILS, "linus@linux.org");
-//    }
-//
-//    @Test
-//    public void checkUpdateCustomer() {
-//        String updatedEmail = "billgates@microsoft.com";
-//        MultiValueMap<String, Object> postBody = new LinkedMultiValueMap<>();
-//        postBody.put("firstName", List.of("Bill"));
-//        postBody.put("lastName", List.of("Gates"));
-//        postBody.put("email", List.of(updatedEmail));
-//        restTemplate.postForEntity("http://localhost:" + port + "/customers", postBody, String.class);
-//        assertThat(restTemplate.getForObject("http://localhost:" + port + "/customers?name=Bill+Gates",
-//                String.class)).contains(DETAILS, updatedEmail);
-//    }
 }
