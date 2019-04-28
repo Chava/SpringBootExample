@@ -6,8 +6,7 @@ import com.springboot.app.model.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
-
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -23,14 +22,15 @@ public class CustomerService {
 
     public void addCustomer(Customer item) {
         CustomerId customerId = item.getCustomerId();
-        if (!CollectionUtils.isEmpty(customerRepository.findByCustomerId(customerId))) {
+        if (customerRepository.findByCustomerId(customerId).findFirst().isPresent()) {
             customerRepository.deleteByCustomerId(customerId);
         }
         customerRepository.save(item);
     }
 
     public Customer customerDetails(long id) {
-        return customerRepository.findById(id).get(0);
+        return customerRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException(String.format("Customer with id:%d is not found", id)));
     }
 
     public void deleteCustomer(long id) {
